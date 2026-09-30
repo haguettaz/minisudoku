@@ -1,4 +1,4 @@
-# Sudoku Solver
+# Propadoku: A Sudoku Solver
 
 A high-performance Sudoku solver implemented in Rust, utilizing **iterative constraint propagation** to efficiently navigate the search space.
 This solver is designed to handle grids of any difficulty, including ill-posed puzzles with multiple solutions.
@@ -73,4 +73,3 @@ The algorithm follows these primary steps:
 1. **Initialization:** Load the grid and assign initial domains to all cells.
 2. **Constraint Propagation:** Reduce domains by message-passing over local (row, column, and block) constraints.
 3. **Search (if required):** If propagation does not result in a full solution, the solver branches on the cell with the smallest remaining domain to find all valid completions.
-
