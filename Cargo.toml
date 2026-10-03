@@ -6,3 +6,7 @@ edition = "2024"
 [dependencies]
 log = "0.4.29"
 simple_logger = "5.2.0"
+rayon = "1.12.0"
+anyhow = "1.0.104"
+crossterm = "0.29"
+ratatui = "0.30.2"
