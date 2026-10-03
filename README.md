@@ -5,7 +5,7 @@ It leverages iterative constraint propagation and parallelized branching to solv
 
 ## Installation & Usage
 
-**Prerequisites:** Install the [Rust toolchain](https://rustup.rs/).
+**Prerequisites:** Ensure you have the [Rust toolchain](https://rustup.rs/) installed.
 
 Clone the repository and enter the directory:
 
@@ -13,8 +13,6 @@ Clone the repository and enter the directory:
 git clone [https://github.com/haguettaz/propadoku.git](https://github.com/haguettaz/propadoku.git)
 cd propadoku
 ```
-
-Ensure you have the [Rust toolchain](https://rustup.rs/) installed.
 
 ### Option 1: Run directly with Cargo
 
