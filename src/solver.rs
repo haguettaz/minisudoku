@@ -5,7 +5,7 @@ use std::sync::mpsc::{Sender, channel};
 
 use crate::grid::Grid;
 
-const NMAX_SOL: usize = 100;
+const NMAX_SOL: usize = 250;
 pub type Messages = [u16; 81];
 
 enum Status {

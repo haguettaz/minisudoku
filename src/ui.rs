@@ -21,31 +21,22 @@ pub fn render(f: &mut Frame, app: &App) {
             if let Some(err) = error {
                 text.push_str(&format!("\n\nError: {}", err));
             }
-            let p = Paragraph::new(text).block(Block::bordered().title(" 1. Load Grid "));
+            let p = Paragraph::new(text).block(Block::bordered().title(" Grid File "));
             f.render_widget(p, top_chunk);
         }
         AppState::PromptMode { grid } => {
             let text = "Grid loaded successfully!\n\nPress '1' for ANY solution (stop at first match)\nPress '2' for ALL solutions\n\n(Press Ctrl+N at any time to load a new grid)";
-            let p = Paragraph::new(text).block(Block::bordered().title(" 2. Choose Mode "));
+            let p = Paragraph::new(text).block(Block::bordered().title(" Solving Mode "));
             f.render_widget(p, top_chunk);
             draw_single_grid(f, grid, " Loaded Grid ", bottom_chunk);
         }
-        // AppState::PromptMax { grid, input } => {
-        //     let text = format!(
-        //         "You chose ALL solutions.\n\nEnter maximum number of solutions (leave empty for unlimited):\n> {}",
-        //         input
-        //     );
-        //     let p = Paragraph::new(text).block(Block::bordered().title(" 3. Solution Limits "));
-        //     f.render_widget(p, top_chunk);
-        //     draw_single_grid(f, grid, " Loaded Grid ", bottom_chunk);
-        // }
         AppState::PromptStart { grid, all } => {
             let text = if *all {
                 "Ready to solve! \n\nMode: ALL. \n\nPress ENTER to start the engine.".to_string()
             } else {
                 "Ready to solve! \n\nMode: ANY. \n\nPress ENTER to start the engine.".to_string()
             };
-            let p = Paragraph::new(text).block(Block::bordered().title(" 4. Start Solving "));
+            let p = Paragraph::new(text).block(Block::bordered().title(" Ready to Solve "));
             f.render_widget(p, top_chunk);
             draw_single_grid(f, grid, " Loaded Grid ", bottom_chunk);
         }
@@ -72,7 +63,7 @@ pub fn render(f: &mut Frame, app: &App) {
             };
 
             let p = Paragraph::new(text)
-                .block(Block::bordered().title(" 5. Results "))
+                .block(Block::bordered().title(" Results "))
                 .wrap(Wrap { trim: true });
             f.render_widget(p, top_chunk);
 
@@ -99,7 +90,7 @@ fn draw_single_grid(f: &mut Frame, grid: &Grid, title: &str, area: Rect) {
     let mut s = String::new();
     for r in 0..9 {
         if r > 0 && r % 3 == 0 {
-            s.push_str("-------+-------+-------\n");
+            s.push_str("------+-------+------\n");
         }
         for c in 0..9 {
             if c > 0 && c % 3 == 0 {
