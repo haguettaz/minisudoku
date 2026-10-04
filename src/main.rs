@@ -53,22 +53,22 @@ fn run_app(terminal: &mut DefaultTerminal, mut app: App) -> io::Result<()> {
                     KeyCode::Char('1') => {
                         app.state = AppState::PromptStart {
                             grid: *grid,
-                            all: false,
+                            find_all: false,
                         }
                     }
                     KeyCode::Char('2') => {
                         app.state = AppState::PromptStart {
                             grid: *grid,
-                            all: true,
+                            find_all: true,
                         }
                     }
                     _ => {}
                 },
-                AppState::PromptStart { grid, all } => {
+                AppState::PromptStart { grid, find_all } => {
                     if key.code == KeyCode::Enter {
                         // Call the solver module directly and time the solve
                         let now = Instant::now();
-                        let result = solver::solve(*grid, *all);
+                        let result = solver::solve(*grid, *find_all);
                         let time = now.elapsed();
                         match result {
                             Ok(solutions) => {
@@ -93,10 +93,18 @@ fn run_app(terminal: &mut DefaultTerminal, mut app: App) -> io::Result<()> {
                     active_index,
                     ..
                 } => match key.code {
-                    KeyCode::Left => *active_index = active_index.saturating_sub(1),
+                    KeyCode::Left => {
+                        if !solutions.is_empty() {
+                            *active_index = ((*active_index as i32 - 1)
+                                .rem_euclid(solutions.len() as i32))
+                                as usize;
+                        }
+                    }
                     KeyCode::Right => {
-                        if !solutions.is_empty() && *active_index < solutions.len() - 1 {
-                            *active_index += 1;
+                        if !solutions.is_empty() {
+                            *active_index = ((*active_index as i32 + 1)
+                                .rem_euclid(solutions.len() as i32))
+                                as usize;
                         }
                     }
                     _ => {}

@@ -30,13 +30,13 @@ pub fn render(f: &mut Frame, app: &App) {
             f.render_widget(p, top_chunk);
             draw_single_grid(f, grid, " Loaded Grid ", bottom_chunk);
         }
-        AppState::PromptStart { grid, all } => {
-            let text = if *all {
-                "Ready to solve! \n\nMode: ALL. \n\nPress ENTER to start the engine.".to_string()
+        AppState::PromptStart { grid, find_all } => {
+            let text = if *find_all {
+                "Find all solutions. \n\nPress ENTER to start the engine.".to_string()
             } else {
-                "Ready to solve! \n\nMode: ANY. \n\nPress ENTER to start the engine.".to_string()
+                "Find first solution. \n\nPress ENTER to start the engine.".to_string()
             };
-            let p = Paragraph::new(text).block(Block::bordered().title(" Ready to Solve "));
+            let p = Paragraph::new(text).block(Block::bordered().title(" Ready to Solve! "));
             f.render_widget(p, top_chunk);
             draw_single_grid(f, grid, " Loaded Grid ", bottom_chunk);
         }
@@ -47,15 +47,20 @@ pub fn render(f: &mut Frame, app: &App) {
             duration,
         } => {
             let total = solutions.len();
+            let duration_text = if duration.as_millis() >= 3_u128 {
+                format!("{} ms", duration.as_millis())
+            } else {
+                format!("{} us", duration.as_micros())
+            };
             let text = if total == 0 {
                 format!(
-                    "Solved in {} ms! No solutions found.\n\nPress ESC to quit, or Ctrl+N to load another grid.",
-                    duration.as_millis()
+                    "Solved in {}! No solutions found.\n\nPress ESC to quit, or Ctrl+N to load another grid.",
+                    duration_text
                 )
             } else {
                 format!(
-                    "Solved in {} ms! Found {} solution(s).\n\nShowing solution {} of {}.\nUse [LEFT] and [RIGHT] arrows to navigate. Press ESC to quit, or Ctrl+N to load another grid.",
-                    duration.as_millis(),
+                    "Solved in {}! Found {} solution(s).\n\nShowing solution {} of {}.\nUse [LEFT] and [RIGHT] arrows to navigate. Press ESC to quit, or Ctrl+N to load another grid.",
+                    duration_text,
                     total,
                     active_index + 1,
                     total

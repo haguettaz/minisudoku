@@ -1,7 +1,7 @@
 # Propadoku
 
 A blazing-fast, minimal Sudoku solver written in pure Rust with a sleek terminal UI.
-It leverages iterative constraint propagation and parallelized branching to solve puzzles of any difficulty, including ill-posed grids with multiple solutions.
+It can solve puzzles of any difficulty, including ill-posed grids with multiple solutions.
 
 ## Installation & Usage
 

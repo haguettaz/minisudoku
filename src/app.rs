@@ -12,7 +12,7 @@ pub enum AppState {
     },
     PromptStart {
         grid: Grid,
-        all: bool, // Whether to search for all solution or just one
+        find_all: bool, // Whether to search for all solution or just one
     },
     Solved {
         grid: Grid,
