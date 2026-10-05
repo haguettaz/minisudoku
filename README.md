@@ -40,7 +40,7 @@ The solver reads `.txt` files.
 Represent the grid using numbers 1-9 for known values and empty spaces for unknowns, separated by commas. 
 Example grids are included in the `examples/` directory.
 
-## ⚠️ Disclaimer
+## ‼️ Disclaimer
 
 This project was built primarily for educational purposes rather than to chase raw speed records. 
 If you are looking for SOTA performance, check out the [tdoku project and blog post](https://t-dillon.github.io/tdoku/).
