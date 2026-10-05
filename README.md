@@ -1,6 +1,6 @@
-# Propadoku
+# 🧩 Mini-Sudoku
 
-A blazing-fast, minimal Sudoku solver written in pure Rust with a sleek terminal UI.
+A minimal, simple but blazing fast Sudoku solver written in pure Rust with a sleek terminal UI.
 It can solve puzzles of any difficulty, including ill-posed grids with multiple solutions.
 
 ## Installation & Usage

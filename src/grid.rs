@@ -11,7 +11,7 @@ where
 {
     let mut grid = Vec::new();
 
-    // 1. Call read_lines and map the std::io::Error to a String if it fails
+    // Call read_lines and map the std::io::Error to a String if it fails
     let lines = read_lines(filename).map_err(|e| format!("Failed to read file: {}", e))?;
 
     // Consumes the iterator, ignoring lines that fail to read
