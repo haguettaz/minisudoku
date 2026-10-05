@@ -31,7 +31,7 @@ cargo install --path .
 
 You can now launch the solver from any terminal directory:
 ```bash
-propadoku
+mini-sudoku
 ```
 
 ### Input Format
