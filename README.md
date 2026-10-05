@@ -3,11 +3,6 @@
 A simple but performant Sudoku solver written in pure Rust with a sleek interactive TUI built with [ratatui](https://ratatui.rs).
 It can solve puzzles of any difficulty, including ill-posed grids with multiple solutions in milliseconds.
 
-## ⚠️ Disclaimer
-
-This project was built primarily for educational purposes rather than to chase raw speed records. 
-If you are looking for SOTA performance, check out the [tdoku project and blog post](https://t-dillon.github.io/tdoku/).
-
 ## Installation & Usage
 
 **Prerequisites:** Ensure you have the [Rust toolchain](https://rustup.rs/) installed.
@@ -44,3 +39,8 @@ mini-sudoku
 The solver reads `.txt` files. 
 Represent the grid using numbers 1-9 for known values and empty spaces for unknowns, separated by commas. 
 Example grids are included in the `examples/` directory.
+
+## ⚠️ Disclaimer
+
+This project was built primarily for educational purposes rather than to chase raw speed records. 
+If you are looking for SOTA performance, check out the [tdoku project and blog post](https://t-dillon.github.io/tdoku/).
