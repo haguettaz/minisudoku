@@ -214,6 +214,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "dancing-links"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "edfe6600988e07deb8c46920ff5446e7ede5dd08fde7ef003549379b1ab347f9"
+dependencies = [
+ "bumpalo",
+]
+
+[[package]]
 name = "darling"
 version = "0.24.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -636,19 +645,20 @@ dependencies = [
 ]
 
 [[package]]
-name = "mini-sudoku"
-version = "0.1.1"
-dependencies = [
- "anyhow",
- "crossterm",
- "ratatui",
-]
-
-[[package]]
 name = "minimal-lexical"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "68354c5c6bd36d73ff3feceb05efa59b6acb7626617f4962be322a825e61f79a"
+
+[[package]]
+name = "minisudoku"
+version = "0.1.1"
+dependencies = [
+ "anyhow",
+ "crossterm",
+ "dancing-links",
+ "ratatui",
+]
 
 [[package]]
 name = "mio"

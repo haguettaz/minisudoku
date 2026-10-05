@@ -1,5 +1,5 @@
 [package]
-name = "mini-sudoku"
+name = "minisudoku"
 version = "0.1.1"
 edition = "2024"
 
@@ -7,4 +7,5 @@ edition = "2024"
 anyhow = "1.0.104"
 crossterm = "0.29"
 ratatui = "0.30.2"
+dancing-links = "0.3.1"
 # rayon = "1.12.0"
