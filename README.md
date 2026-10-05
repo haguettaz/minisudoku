@@ -3,7 +3,7 @@
 A simple but performant Sudoku solver written in pure Rust with a sleek interactive TUI built with [ratatui](https://ratatui.rs).
 It can solve puzzles of any difficulty, including ill-posed grids with multiple solutions in milliseconds.
 
-## Installation & Usage
+## ⚙️ Installation & Usage
 
 **Prerequisites:** Ensure you have the [Rust toolchain](https://rustup.rs/) installed.
 
