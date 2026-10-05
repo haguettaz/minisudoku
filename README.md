@@ -10,8 +10,8 @@ It can solve puzzles of any difficulty, including ill-posed grids with multiple 
 Clone the repository and enter the directory:
 
 ```bash
-git clone [https://github.com/haguettaz/propadoku.git](https://github.com/haguettaz/propadoku.git)
-cd propadoku
+git clone [https://github.com/haguettaz/minisudoku.git](https://github.com/haguettaz/minisudoku.git)
+cd minisudoku
 ```
 
 ### Option 1: Run directly with Cargo
@@ -31,7 +31,7 @@ cargo install --path .
 
 You can now launch the solver from any terminal directory:
 ```bash
-mini-sudoku
+minisudoku
 ```
 
 ### Input Format
