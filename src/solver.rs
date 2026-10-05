@@ -2,7 +2,38 @@ use crate::grid::Grid;
 use anyhow::{Result, anyhow};
 
 const NMAX_SOL: usize = 250;
-const ALL_CANDIDATES: u16 = 0b111111111;
+const ALL_CANDIDATES: u32 = 0b111111111;
+
+// Lookup tables for quick identification of row, column, and block.
+pub const ROW: [usize; 81] = {
+    let mut arr = [0; 81];
+    let mut i = 0;
+    while i < 81 {
+        arr[i] = i / 9;
+        i += 1;
+    }
+    arr
+};
+pub const COL: [usize; 81] = {
+    let mut arr = [0; 81];
+    let mut i = 0;
+    while i < 81 {
+        arr[i] = i % 9;
+        i += 1;
+    }
+    arr
+};
+pub const BLK: [usize; 81] = {
+    let mut arr = [0; 81];
+    let mut i = 0;
+    while i < 81 {
+        let r = i / 9;
+        let c = i % 9;
+        arr[i] = (r / 3) * 3 + (c / 3);
+        i += 1;
+    }
+    arr
+};
 
 pub fn solve(grid: Grid, find_all: bool) -> Result<Vec<Grid>> {
     let mut solver = Solver::new(grid, find_all)?;
@@ -15,9 +46,9 @@ pub fn solve(grid: Grid, find_all: bool) -> Result<Vec<Grid>> {
 #[derive(Clone)]
 struct Solver {
     grid: Grid,
-    rows: [u16; 9],
-    cols: [u16; 9],
-    blocks: [u16; 9],
+    rows: [u32; 9],
+    cols: [u32; 9],
+    blocks: [u32; 9],
     empty_cells: Vec<usize>,
     solutions: Vec<Grid>,
     find_all: bool,
@@ -89,9 +120,9 @@ impl Solver {
         let best_idx = self.find_most_constrained_cell();
 
         let cell = self.empty_cells[best_idx];
-        let r = cell / 9;
-        let c = cell % 9;
-        let b = (r / 3) * 3 + (c / 3);
+        let r = ROW[cell];
+        let c = COL[cell];
+        let b = BLK[cell];
 
         // Propagate constraint
         let taken = self.rows[r] | self.cols[c] | self.blocks[b]; // // Bitmask of already taken values
@@ -116,7 +147,7 @@ impl Solver {
 
             available &= !bit; // Clear the bit we are currently testing
 
-            self.grid[cell] = Some((bit_idx + 1) as u16);
+            self.grid[cell] = Some((bit_idx + 1) as u32);
             self.rows[r] |= bit;
             self.cols[c] |= bit;
             self.blocks[b] |= bit;
@@ -151,9 +182,9 @@ impl Solver {
         let mut best_idx = 0;
 
         for (idx, &cell) in self.empty_cells.iter().enumerate() {
-            let r = cell / 9;
-            let c = cell % 9;
-            let b = (r / 3) * 3 + (c / 3);
+            let r = ROW[cell];
+            let c = COL[cell];
+            let b = BLK[cell];
 
             let taken = self.rows[r] | self.cols[c] | self.blocks[b]; // // Bitmask of already taken values
             let available = !taken & ALL_CANDIDATES; // Mask out the unused upper bits of the 16-bit integer

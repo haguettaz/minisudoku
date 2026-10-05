@@ -2,7 +2,7 @@ use std::fs::File;
 use std::io::{BufRead, BufReader, Lines, Result as IOResult};
 use std::path::Path;
 
-pub type Cell = Option<u16>;
+pub type Cell = Option<u32>;
 pub type Grid = [Cell; 81];
 
 pub fn load<P>(filename: P) -> Result<Grid, String>
@@ -17,7 +17,7 @@ where
     // Consumes the iterator, ignoring lines that fail to read
     for line in lines.map_while(Result::ok) {
         grid.extend(line.chars().filter_map(|c| match c {
-            '1'..='9' => Some(Some(c.to_digit(10).unwrap() as u16)),
+            '1'..='9' => Some(Some(c.to_digit(10).unwrap() as u32)),
             '_' | '.' | '0' => Some(None),
             _ => None,
         }));
